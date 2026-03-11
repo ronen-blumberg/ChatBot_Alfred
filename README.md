@@ -13,12 +13,14 @@ Chatbot Alfred is an open-source desktop chatbot designed to be a compassionate 
 Alfred is not a therapist, counselor, or AI assistant. He is a simple chatbot that offers a safe, private, non-judgmental space to express your feelings. Alfred will listen, validate your pain, and gently encourage you to seek professional help when needed.
 
 **Who is Alfred for?**
+
 - People who need someone to talk to when no one else is available
 - Trauma and abuse survivors who want to practice opening up
 - Anyone struggling with mental health who could use a compassionate ear
 - People who find it easier to talk to a chatbot before talking to a person
 
 **What Alfred is NOT:**
+
 - Not a replacement for therapy, medication, or professional help
 - Not an AI with real understanding or memory
 - Not suitable for crisis intervention (though he provides crisis hotline numbers)
@@ -134,14 +136,14 @@ The word swap mechanism is key to ELIZA-style conversation. When a reply ends wi
 
 The database (`database/database.txt`) uses a simple line-based format with prefix tags:
 
-| Prefix | Description | Example |
-|--------|-------------|---------|
-| `k:` | Keyword — matched against user input | `k:depression` |
-| `r:` | Reply — response for the preceding keyword group | `r:i hear you dear one...` |
-| `r:...*` | Reply with tail-append — appends swapped user input | `r:tell me more about*` |
-| `s:` | Word swap pair — format `s:input>output` | `s:I>you` |
-| `d:` | Default response — used when no keyword matches | `d:please go on...` |
-| `c1:` | Command — triggers the instruction file | `c1:-help` |
+| Prefix   | Description                                         | Example                    |
+| -------- | --------------------------------------------------- | -------------------------- |
+| `k:`     | Keyword — matched against user input                | `k:depression`             |
+| `r:`     | Reply — response for the preceding keyword group    | `r:i hear you dear one...` |
+| `r:...*` | Reply with tail-append — appends swapped user input | `r:tell me more about*`    |
+| `s:`     | Word swap pair — format `s:input>output`            | `s:I>you`                  |
+| `d:`     | Default response — used when no keyword matches     | `d:please go on...`        |
+| `c1:`    | Command — triggers the instruction file             | `c1:-help`                 |
 
 ### Database Rules
 
@@ -208,13 +210,13 @@ The database (`database/database.txt`) uses a simple line-based format with pref
 
 If you or someone you know is in crisis:
 
-| Country | Hotline | Phone/Text |
-|---------|---------|------------|
-| **United States** | Suicide & Crisis Lifeline | Call or text **988** |
-| **United Kingdom** | Samaritans | Call **116 123** |
-| **Canada** | Suicide Crisis Helpline | Call or text **988** |
-| **International** | Find A Helpline | [findahelpline.com](https://findahelpline.com) |
-| **Emergency** | Local emergency services | **911** (US) / **999** (UK) / **112** (EU) |
+| Country            | Hotline                   | Phone/Text                                     |
+| ------------------ | ------------------------- | ---------------------------------------------- |
+| **United States**  | Suicide & Crisis Lifeline | Call or text **988**                           |
+| **United Kingdom** | Samaritans                | Call **116 123**                               |
+| **Canada**         | Suicide Crisis Helpline   | Call or text **988**                           |
+| **International**  | Find A Helpline           | [findahelpline.com](https://findahelpline.com) |
+| **Emergency**      | Local emergency services  | **911** (US) / **999** (UK) / **112** (EU)     |
 
 ---
 
@@ -223,15 +225,19 @@ If you or someone you know is in crisis:
 ### Adding New Keywords and Replies
 
 1. Open `database/database.txt` in a text editor
+
 2. Add your keywords and replies following the format:
+   
    ```
    k:your keyword
    k:another keyword
-
+   
    r:your response here
    r:another response with tail reflection*
    ```
+
 3. Keep responses warm, empathetic, and in Alfred's voice (lowercase; vary terms of address: "dear one", "dear friend", "dear heart", or no term)
+
 4. Aim for at least 4 replies per keyword group to avoid repetition
 
 ### Re-encrypting the Database
@@ -251,6 +257,7 @@ This generates a new `database-encrypted.txt` that the chatbot loads at runtime.
 ## Changelog
 
 ### v0.6 (Current)
+
 - **Safety Fix:** Removed 4 dangerous word swaps (`he→I`, `she→I`, `his→my`, `her→my`) that reversed abuse disclosures (e.g., "he hurt me" became "I hurt you")
 - **Safety Fix:** Added 15 missing crisis keywords including social media euphemisms (`unalive`, `unaliving`), common misspellings (`suicde`, `kill myslef`), and additional crisis phrases (`want to disappear`, `wish I was never born`, `can't go on`)
 - **Safety Fix:** Added safety planning group with keywords (`safety plan`, `warning signs`, `reasons to live`) and 4 responses
@@ -272,6 +279,7 @@ This generates a new `database-encrypted.txt` that the chatbot loads at runtime.
 - **Stats:** 1,076 keywords, 765 replies, 60 defaults, 47 swaps, 28 tail-append replies across 46 sections
 
 ### v0.5
+
 - **Dead Code Removal:** Removed unused `InsertStr`, `Replace`, `ReplaceAll` functions from GUI (never called)
 - **Dead Code Removal:** Removed unused `TTSvoice` variable from GUI (voice set by `TTS.VoiceByID(0)` instead)
 - **Dead Code Removal:** Cleaned up TTS.bas: removed unused variables (`LENT`, `OLD`), removed 6 commented-out debug lines
@@ -288,6 +296,7 @@ This generates a new `database-encrypted.txt` that the chatbot loads at runtime.
 - **Documentation:** Updated README.md with v0.5 changelog and expanded topic list (42 sections)
 
 ### v0.4
+
 - **Dead Code Removal:** Removed all leftover GPT-related code (`isApi` variable, `printMessageUsage()` sub)
 - **Dead Code Removal:** Removed all commented-out dead code from GUI and engine files
 - **Dead Code Removal:** Removed unused `inpt_swap()` function (duplicate of inline word-swap logic)
@@ -304,6 +313,7 @@ This generates a new `database-encrypted.txt` that the chatbot loads at runtime.
 - **Documentation:** Updated README.md with v0.4 changelog and expanded topic list (25 sections)
 
 ### v0.3
+
 - **Code Quality:** Renamed misspelled `deafult` variable to `defaultReplies`
 - **Error Handling:** Added file-open error checking in `loadArrays()` with database validation
 - **Input Validation:** Empty and excessively long inputs are now handled gracefully
@@ -319,6 +329,7 @@ This generates a new `database-encrypted.txt` that the chatbot loads at runtime.
 - **Documentation:** Added comprehensive README.md
 
 ### v0.2
+
 - Complete database rewrite with 16 organized mental health sections
 - Fixed 9 code bugs:
   - Fixed `LEN(cint(punctuation))` crash in `joinPunctuation`
@@ -331,6 +342,7 @@ This generates a new `database-encrypted.txt` that the chatbot loads at runtime.
 - Added encrypted database system
 
 ### v0.1
+
 - Initial release
 - Basic ELIZA-style chatbot with Window9 GUI
 - Text-to-speech support

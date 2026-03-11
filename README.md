@@ -42,7 +42,7 @@ Alfred is not a therapist, counselor, or AI assistant. He is a simple chatbot th
 
 ## Screenshots
 
-*(Screenshots coming soon)*
+[![Chatbot Alfred Screenshot](https://i.postimg.cc/FKqbHgmD/zylwm-msk-2026-03-11-163018.png)](https://postimg.cc/1gGVWF8q)
 
 ---
 
